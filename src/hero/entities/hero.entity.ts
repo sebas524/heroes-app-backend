@@ -8,6 +8,7 @@ export class Hero extends Document {
   @Prop({ index: true }) alterEgo: string;
   @Prop({ index: true }) firstAppearance: string;
   @Prop({ index: true }) characters: string;
+  @Prop() photo: string;
 }
 
 export const HeroSchema = SchemaFactory.createForClass(Hero);

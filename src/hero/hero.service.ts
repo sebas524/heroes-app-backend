@@ -9,6 +9,7 @@ import { UpdateHeroDto } from './dto/update-hero.dto';
 import { Model, isValidObjectId } from 'mongoose';
 import { Hero } from './entities/hero.entity';
 import { InjectModel } from '@nestjs/mongoose';
+import { join } from 'path';
 
 @Injectable()
 export class HeroService {
@@ -20,6 +21,9 @@ export class HeroService {
   async create(createHeroDto: CreateHeroDto) {
     // * to save it as lowercase:
     createHeroDto.superhero = createHeroDto.superhero.toLowerCase();
+    // if (createHeroDto.superhero.includes(' ')) {
+    //   createHeroDto.superhero = createHeroDto.superhero.split(' ').join('-');
+    // }
 
     // * try catch in case of error
     try {

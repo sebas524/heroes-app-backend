@@ -6,4 +6,5 @@ export class CreateHeroDto {
   @IsString() @MinLength(1) alterEgo: string;
   @IsString() @MinLength(1) firstAppearance: string;
   @IsString() @MinLength(1) characters: string;
+  @IsString() @MinLength(1) photo: string;
 }
