@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
+import { Hero } from './entities/hero.entity';
 
 @Controller('hero')
 export class HeroController {
@@ -20,9 +22,13 @@ export class HeroController {
     return this.heroService.create(createHeroDto);
   }
 
+  // @Get()
+  // findAll(letter) {
+  //   return this.heroService.findAll();
+  // }
   @Get()
-  findAll() {
-    return this.heroService.findAll();
+  async findAll(@Query('letter') letter: string): Promise<Hero[]> {
+    return this.heroService.findAll(letter);
   }
 
   @Get(':term')

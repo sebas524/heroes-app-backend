@@ -34,8 +34,18 @@ export class HeroService {
     }
   }
 
-  findAll() {
+  async findAll(letter?: string): Promise<Hero[]> {
+    if (letter) {
+      return await this.heroModel
+        .find({
+          superhero: { $regex: `^${letter}`, $options: 'i' },
+        })
+        .exec();
+    }
+
     return this.heroModel.find();
+
+    // return this.heroModel.find();
   }
 
   async findOne(term: string) {
