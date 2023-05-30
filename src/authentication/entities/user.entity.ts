@@ -1,0 +1,20 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
+// * here is how your table (columns) will appear like:
+@Schema()
+export class User {
+  _id?: string;
+
+  @Prop({ required: true })
+  name: string;
+  @Prop({ unique: true, required: true })
+  email: string;
+  @Prop({ minlength: 6, required: true })
+  password?: string;
+  @Prop({ default: true })
+  isActive: boolean;
+  @Prop({ type: [String], default: ['user'] })
+  roles: string[];
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
